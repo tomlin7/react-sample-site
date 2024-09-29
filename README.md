@@ -7,7 +7,10 @@ bun install
 bun run dev
 ```
 
-Issues possible (for contributions):
+## Flow
+![](./flow.svg)
+
+### Issues possible (for contributions):
 - [ ] saving notes into local storage as well
 - [ ] providing entertainment based on picked categories
 - [ ] mini dashboard page before main dashboard
