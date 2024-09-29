@@ -1,0 +1,144 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: black;
+}
+
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.main {
+  padding: 40px;
+}
+
+.category {
+  margin-bottom: 40px;
+}
+
+.category h3 {
+  color: grey;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.movieGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.movieCarousel {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 20px;
+  cursor: grab;
+}
+
+.movieCarousel:active {
+  cursor: grabbing;
+}
+
+.movieCard {
+  /* background-color: #1c1c1c; */
+  padding: 10px;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  text-align: center;
+  flex: 0 0 auto;
+  width: 200px;
+  margin-right: 10px;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.movieCard:hover {
+  transform: scale(1.05);
+}
+
+.movieImage {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  object-position: bottom;
+  border-radius: 12px;
+  /* height: auto; */
+}
+
+.movieTitle {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: white;
+}
+
+.skeleton {
+  border-radius: 4px;
+}
+
+.skeletonShimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, #272727 0%, #565656 50%, #272727 100%);
+  background-size: 1000px 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px -1000px;
+  }
+  100% {
+    background-position: 1000px 1000px;
+  }
+}
+
+.skeletonText {
+  height: 20px;
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #454545;
+  border-radius: 10prgb (210, 210, 210);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #dcdcdc;
+}
