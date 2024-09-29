@@ -1,0 +1,6 @@
+const env = await import.meta.env;
+const MOVIEDB_KEY = env.VITE_MOVIEDB_KEY;
+const OPENWEATHERMAP_KEY = env.VITE_OPENWEATHERMAP_KEY;
+const NEWSAPI_KEY = env.VITE_NEWSAPI_KEY;
+
+export { MOVIEDB_KEY, NEWSAPI_KEY, OPENWEATHERMAP_KEY };

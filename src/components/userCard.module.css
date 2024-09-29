@@ -1,0 +1,74 @@
+.userCard {
+  height: 30vh;
+  grid-row: 1;
+  font-size: medium;
+  grid-column: 1;
+  background: linear-gradient(180deg, #5746ea, #5746ea);
+  border-radius: 8px;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.avatar {
+  border-radius: 50px;
+  margin-right: 8px;
+  margin-left: 8px;
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid white;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.3));
+  transition: transform 0.2s ease-in-out;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+}
+
+.userInfo h2,
+.userInfo h1,
+.userInfo p {
+  margin-left: 8px;
+  font-size: 0.9em;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 4px;
+  margin-left: 8px;
+}
+
+.category {
+  background-color: #9f94ff;
+  padding: 1px 6px;
+  border-radius: 12px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  border: none;
+}
+
+.category:hover {
+  background-color: rgb(128, 115, 250);
+}
+
+.signoutButton {
+  background-color: #a724cfc9;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 0.8em;
+  margin-left: 7px;
+}
+
+.signoutButton:hover {
+  border: 1px solid white;
+  background-color: #a724cf;
+}

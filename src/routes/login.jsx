@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
 
-import coverPic from "../assets/cover.png";
-import styles from "./home.module.css";
+import { coverPic } from "../data/data";
+import styles from "./login.module.css";
 
-export default function Home() {
+export default function LoginPage() {
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -15,13 +15,6 @@ export default function Home() {
     categories: [],
   });
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      navigate("/categories");
-    }
-  });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -45,6 +38,13 @@ export default function Home() {
       }
     } catch (err) {}
   };
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      navigate("/categories");
+    }
+  });
 
   return (
     <div className={styles.container}>

@@ -7,21 +7,21 @@ import ErrorPage from "./routes/404";
 import Categories from "./routes/categories";
 import DashboardPage from "./routes/dashboard";
 import EntertainmentPage from "./routes/entertainment";
-import Home from "./routes/home";
+import LoginPage from "./routes/login";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <DashboardPage />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
   },
   {
     path: "/categories",
     element: <Categories />,
-  },
-  {
-    path: "/dashboard",
-    element: <DashboardPage />,
   },
   {
     path: "/entertainment",

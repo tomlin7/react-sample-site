@@ -1,72 +1,93 @@
 import React, { useEffect, useRef, useState } from "react";
-import placeholder from "../assets/user.png";
+import { useNavigate } from "react-router-dom";
+import { userPlaceholder } from "../data/data";
+
 import "../index.css";
 import styles from "./entertainment.module.css";
-const MovieSkeleton = () => (
-  <div className={`${styles.movieCard} ${styles.skeleton}`}>
-    <div className={`${styles.movieImage} ${styles.skeletonShimmer}`}></div>
-  </div>
-);
 
+import { MOVIEDB_KEY } from "../secrets";
+
+/// Category Skeleton shown while loading
 const CategorySkeleton = () => (
   <section className={styles.category}>
     <h3 className={`${styles.skeletonText} ${styles.skeletonShimmer}`}></h3>
     <div className={styles.movieGrid}>
       {[...Array(5)].map((_, index) => (
-        <MovieSkeleton key={index} />
+        <div key={index} className={`${styles.movieCard} ${styles.skeleton}`}>
+          <div
+            className={`${styles.movieImage} ${styles.skeletonShimmer}`}
+          ></div>
+        </div>
       ))}
     </div>
   </section>
 );
 
+/// Entertainment Page
 const EntertainmentPage = () => {
   const [movies, setMovies] = useState({
     Action: [],
     Thriller: [],
     Horror: [],
   });
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const carouselRefs = useRef({});
+  const navigate = useNavigate();
+
+  // navigation functions
+  const goToDashboard = () => {
+    navigate("/");
+  };
+
+  // Fetch movies from themoviedb.org
+  const fetchMovies = async () => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${MOVIEDB_KEY}`
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+
+      const transformedMovies = {
+        Action: data.results.filter((movie) => movie.genre_ids.includes(28)),
+        Thriller: data.results.filter((movie) => movie.genre_ids.includes(53)),
+        Horror: data.results.filter((movie) => movie.genre_ids.includes(27)),
+      };
+
+      setMovies(transformedMovies);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const response = await fetch(
-          "https://api.themoviedb.org/3/movie/popular?api_key=7e2b980ba6ab4bd8c3843ea18da90a1a"
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-
-        const transformedMovies = {
-          Action: data.results.filter((movie) => movie.genre_ids.includes(28)),
-          Thriller: data.results.filter((movie) =>
-            movie.genre_ids.includes(53)
-          ),
-          Horror: data.results.filter((movie) => movie.genre_ids.includes(27)),
-        };
-
-        setMovies(transformedMovies);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchMovies();
   }, []);
 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className="appName">Super app</h1>
+        <h1
+          className="appName"
+          alt="Home"
+          onClick={goToDashboard}
+          style={{
+            cursor: "pointer",
+          }}
+        >
+          Super app
+        </h1>
         <div className={styles.userAvatar}>
           <img
             className={styles.avatarImage}
-            src={placeholder}
+            src={userPlaceholder}
+            onClick={goToDashboard}
             alt="User avatar"
           />
         </div>

@@ -1,29 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import categories from "../data/categories.js";
+
 import "../index.css";
 import styles from "./categories.module.css";
-
-import actionImg from "../assets/action.png";
-import dramaImg from "../assets/drama.png";
-import fantasyImg from "../assets/fantasy.png";
-import fictionImg from "../assets/fiction.png";
-import horrorImg from "../assets/horror.png";
-import musicImg from "../assets/music.png";
-import romanceImg from "../assets/romance.png";
-import thrillerImg from "../assets/thriller.png";
-import westernImg from "../assets/western.png";
-
-const categories = [
-  { name: "Action", color: "#ff5108", image: actionImg },
-  { name: "Drama", color: "#d7a4ff", image: dramaImg },
-  { name: "Romance", color: "#148a08", image: romanceImg },
-  { name: "Thriller", color: "#84c2ff", image: thrillerImg },
-  { name: "Western", color: "#902500", image: westernImg },
-  { name: "Horror", color: "#7358ff", image: horrorImg },
-  { name: "Fantasy", color: "#ff4ade", image: fantasyImg },
-  { name: "Music", color: "#e61e32", image: musicImg },
-  { name: "Fiction", color: "#6cd061", image: fictionImg },
-];
 
 const CategoriesPage = () => {
   const [selected, setSelected] = useState([]);
@@ -37,25 +17,35 @@ const CategoriesPage = () => {
     );
   };
 
-  useEffect(() => {
-    // const user = JSON.parse(localStorage.getItem("user"));
-    // if (user.categories.length > 0) {
-    //   navigate("/dashboard");
-    // }
-  }, []);
-
   const saveCategories = () => {
     const user = JSON.parse(localStorage.getItem("user"));
+    if (user === null) {
+      console.error("User not found in localStorage");
+      navigate("/login");
+    }
     user.categories = selected;
     localStorage.setItem("user", JSON.stringify(user));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Categories picking successful");
     saveCategories();
-    navigate("/dashboard");
+    navigate("/");
   };
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user === null) {
+      console.error("User not found in localStorage");
+      navigate("/login");
+    }
+
+    // if user has already selected categories, redirect to dashboard
+    // TODO: maybe allow user to change categories later
+    if (user.categories.length > 0) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div className={styles.container}>
