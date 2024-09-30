@@ -23,9 +23,12 @@ const NewsCard = ({ news }) => {
   return (
     <div className={styles.newsCard}>
       <div className={styles.newsImageContainer}>
+        {/* { console.log(news) } */}
         <img
-          src={news.urlToImage}
+          src={news.multimedia[0].url}
           alt={news.title}
+          width={news.multimedia[0].width}
+          height={news.multimedia[0].height}
           className={styles.newsImage}
         />
         <div className={styles.newsTitle}>
@@ -33,7 +36,7 @@ const NewsCard = ({ news }) => {
         </div>
       </div>
       <div className={styles.newsContent}>
-        <p>{news.description}</p>
+        <p>{news.abstract}</p>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import { WeatherCard, WeatherSkeleton } from "../components/weatherCard";
 import styles from "./dashboard.module.css";
 
 // API Keys
-import { NEWSAPI_KEY, OPENWEATHERMAP_KEY } from "../secrets";
+import { NYTAPIKEY, OPENWEATHERMAP_KEY } from "../secrets";
 
 const DashboardPage = () => {
   // user variables
@@ -61,10 +61,11 @@ const DashboardPage = () => {
   const fetchNewsData = async () => {
     try {
       const response = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=${NEWSAPI_KEY}`
+        `https://api.nytimes.com/svc/topstories/v2/world.json?api-key=${NYTAPIKEY}`
       );
       const data = await response.json();
-      setNews(data.articles[0]);
+      console.log(NYTAPIKEY);
+      setNews(data.results[0]);
     } catch (error) {
       console.error("Error fetching news data:", error);
     } finally {
