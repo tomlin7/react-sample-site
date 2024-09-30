@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { NewsCard, NewsSkeleton } from "../components/newsCard";
 import { NotesCard } from "../components/notesCard";
 import { TimerCard } from "../components/timerCard";
-import { UserCard } from "../components/usercard";
+import { UserCard } from "../components/userCard";
 import { WeatherCard, WeatherSkeleton } from "../components/weatherCard";
 
 import styles from "./dashboard.module.css";
